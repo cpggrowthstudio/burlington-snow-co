@@ -378,7 +378,7 @@ footer strong{color:#fff}
         <li>Text when it's done</li>
       </ul>
       <div class="biz">
-        <div><h3>Condo, plaza or office?</h3><p>One contact, one invoice, and a site plan before the first snowfall.</p></div>
+        <div><h3>Condo, plaza or office?</h3><p>Season contracts or one-time clearing. One contact, one invoice, and a site plan before the first snowfall.</p></div>
         <a class="btn btn-sun" href="#book" id="bizBtn">Get a site quote</a>
       </div>
     </div>
@@ -621,6 +621,18 @@ footer strong{color:#fff}
     r.addEventListener("change", function(){ state.mode = this.value; render(); });
   });
   document.querySelectorAll("[data-pick]").forEach(function(a){ a.addEventListener("click", function(){ state.pkg = +a.dataset.pick; state.biz = false; render(); }); });
+  // Commercial can book one-time clearing; homes are season plans only.
+  var startSel = document.getElementById("f-start"), startLbl = startSel.parentNode.firstChild;
+  var START = {home:["Start of season (November 1)","Right away, for the full season"], biz:["Season contract","One-time clearing"]};
+  function setStart(){
+    var k = state.biz ? "biz" : "home";
+    if(startSel.dataset.k === k) return;
+    startSel.dataset.k = k; startSel.innerHTML = "";
+    START[k].forEach(function(t){ var o = document.createElement("option"); o.textContent = t; startSel.appendChild(o); });
+    startLbl.textContent = state.biz ? "What do you need?" : "When should your season plan start?";
+  }
+  document.addEventListener("click", function(){ setTimeout(setStart, 0); });
+  setStart();
   document.getElementById("bizBtn").addEventListener("click", function(){ state.biz = true; render(); });
 
   // booking
