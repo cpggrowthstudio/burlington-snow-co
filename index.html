@@ -435,11 +435,10 @@ footer strong{color:#fff}
               <label>Your name<input type="text" id="f-name" autocomplete="name" placeholder="Sarah M."></label>
               <label>Mobile number<input type="tel" id="f-phone" autocomplete="tel" placeholder="905 555 0123"></label>
               <label class="full">Address in Burlington<input type="text" id="f-address" autocomplete="street-address" placeholder="123 Example Cres"></label>
-              <label class="full">When should we start?
+              <label class="full">When should your season plan start?
                 <select id="f-start">
-                  <option>This season (November)</option>
-                  <option>Next snowfall</option>
-                  <option>As soon as possible</option>
+                  <option>Start of season (November 1)</option>
+                  <option>Right away, for the full season</option>
                 </select>
               </label>
               <label class="full">Anything we should know?<textarea id="f-notes" placeholder="Steep driveway, side door path, neighbours signing up too"></textarea></label>
@@ -593,7 +592,7 @@ footer strong{color:#fff}
     if(state.biz) return {name:"Commercial site", detail:"Commercial", amt:null, unit:"custom quote"};
     var p = PKGS[state.pkg], w = state.walk[state.pkg] ? 1 : 0;
     var amt = state.mode==="season" ? p.s[w] : p.v[w];
-    return {name:p.id + (w ? " with walkway" : ", driveway only"), detail:p.id + " · " + (w ? "with walkway" : "driveway only") + " · " + (state.mode==="season"?"season plan":"per visit"), amt:money(amt), unit: state.mode==="season" ? "per season" : "per visit"};
+    return {name:p.id + (w ? " with walkway" : ", driveway only"), detail:p.id + " · " + (w ? "with walkway" : "driveway only") + " · " + "season plan", amt:money(amt), unit: state.mode==="season" ? "per season" : "per visit"};
   }
 
   function render(){
