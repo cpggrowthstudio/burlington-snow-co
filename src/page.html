@@ -417,12 +417,12 @@ footer strong{color:#fff}
               </label>
               <label class="full">Anything we should know?<textarea id="f-notes" placeholder="Steep driveway, side door path, neighbours signing up too"></textarea></label>
               <p class="err" id="err" hidden></p>
-              <button class="btn btn-sun" type="submit">Write my booking text</button>
+              <button class="btn btn-sun" type="submit" id="submitBtn">Write my booking text</button>
             </form>
           </div>
           <div class="done" id="done" hidden>
-            <h3>Nearly done. Send this text.</h3>
-            <p>Tap the button to open Messages with this filled in. If it doesn't open, copy it and text it to <strong>647 504 5210</strong>.</p>
+            <h3 id="doneTitle">Nearly done. Send this text.</h3>
+            <p id="doneText">Tap the button to open Messages with this filled in. If it doesn't open, copy it and text it to <strong>647 504 5210</strong>.</p>
             <pre class="msg" id="msg"></pre>
             <div class="row">
               <a class="btn btn-blue" id="sendSms" href="#">Open in Messages</a>
@@ -494,6 +494,9 @@ footer strong{color:#fff}
 <script>
 (function(){
   var NUM = "+16475045210";
+  // Google Sheet booking endpoint (Apps Script web app). Empty = text-only booking.
+  var BOOKING_URL = "";
+  if(BOOKING_URL) document.getElementById("submitBtn").textContent = "Book my package";
   // season: [driveway only, with walkway]; visit: same
   var PKGS = [
     {id:"Townhouse", fits:"1 car, short drive", s:[499,499], v:[0,0], lanes:1, len:.55, badge:"Most popular"},
@@ -616,6 +619,12 @@ footer strong{color:#fff}
       (v("f-notes") ? "\nNotes: " + v("f-notes") : "");
     msgEl.textContent = text;
     document.getElementById("sendSms").href = "sms:" + NUM + "?&body=" + encodeURIComponent(text);
+    if(BOOKING_URL){
+      var data = new URLSearchParams({name:v("f-name"), phone:v("f-phone"), address:v("f-address"), package:q.detail, price:q.amt ? q.amt + " " + q.unit : "Site quote", start:v("f-start"), notes:v("f-notes")});
+      fetch(BOOKING_URL, {method:"POST", mode:"no-cors", body:data}).catch(function(){});
+      document.getElementById("doneTitle").textContent = "Booking received. Thank you!";
+      document.getElementById("doneText").textContent = "We'll text you at " + v("f-phone") + " to confirm, usually the same day. Want an even faster reply? Send us this text too.";
+    }
     formWrap.hidden = true; done.hidden = false;
   });
   document.getElementById("edit").addEventListener("click", function(){ done.hidden = true; formWrap.hidden = false; });

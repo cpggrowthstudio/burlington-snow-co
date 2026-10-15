@@ -1,9 +1,11 @@
 """Build the standalone burlingtonsnowco.ca site from the artifact source page."""
 import sys, json, re, os
-src, out = sys.argv[1], sys.argv[2]
+src, out = sys.argv[1], sys.argv[2]  # optional argv[3]: booking web app URL
 os.makedirs(out, exist_ok=True)
 D = "https://burlingtonsnowco.ca/"
 body = open(src).read()
+if len(sys.argv) > 3 and sys.argv[3]:
+    body = body.replace('var BOOKING_URL = "";', 'var BOOKING_URL = ' + json.dumps(sys.argv[3]) + ';', 1)
 body = re.sub(r'<title>.*?</title>\n', '', body, count=1)
 body = body.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', '')
 body = re.sub(r'<meta name="description"[^>]*>\n', '', body, count=1)
