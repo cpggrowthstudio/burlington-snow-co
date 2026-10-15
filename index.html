@@ -30,6 +30,7 @@
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
+<meta name="color-scheme" content="light only">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap" rel="stylesheet">
@@ -52,11 +53,8 @@
   --shadow:0 18px 40px -22px rgba(13,47,92,.45);
   --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;
   --body:"Nunito Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light only;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0B1726;--snow:#102238;--sky:#173456;--line:#25446A;--blue:#4C97F0;--blue-deep:#08182C;--on-blue:#FFFFFF;--sun:#FFC93C;--on-sun:#0D2F5C;--ink:#E3EEF9;--muted:#A3B8D0;--card:#132A45;--map-land:#0F2138;--map-lake:#1B3E66;--map-road:#2B4A70;--map-hwy:#B8862A;--map-water-ink:#8FC0F2;--shadow:0 18px 40px -22px rgba(0,0,0,.8);color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0B1726;--snow:#102238;--sky:#173456;--line:#25446A;--blue:#4C97F0;--blue-deep:#08182C;--on-blue:#FFFFFF;--sun:#FFC93C;--on-sun:#0D2F5C;--ink:#E3EEF9;--muted:#A3B8D0;--card:#132A45;--map-land:#0F2138;--map-lake:#1B3E66;--map-road:#2B4A70;--map-hwy:#B8862A;--map-water-ink:#8FC0F2;--shadow:0 18px 40px -22px rgba(0,0,0,.8);color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);padding-bottom:84px}
