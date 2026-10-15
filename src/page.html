@@ -145,6 +145,10 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;te
 .incl li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--sun)}
 .biz{margin-top:22px;border-radius:24px;background:var(--blue-deep);color:#fff;padding:22px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
 .biz h3{font-size:24px}
+.nbr{margin-top:22px;border-radius:24px;background:var(--sun);color:var(--on-sun);padding:22px 24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.nbr h3{font-size:24px}
+.nbr p{margin:4px 0 0}
+.nbr .btn{background:var(--blue-deep);color:#fff}
 .biz p{margin:4px 0 0;opacity:.85}
 
 /* ---------- reviews ---------- */
@@ -348,6 +352,10 @@ footer strong{color:#fff}
         <li>Every 5 cm or more</li>
         <li>Front steps cleared too</li>
       </ul>
+      <div class="nbr">
+        <div><h3>Book with a neighbour, you each save $50</h3><p>Both homes on the same street, both on a season plan. Add their name and address when you book.</p></div>
+        <a class="btn" href="#book" id="nbrBtn">Book with a neighbour</a>
+      </div>
       <div class="biz">
         <div><h3>Condo, plaza or office?</h3><p>Season contracts or one-time clearing. One contact, one invoice, and a site plan before the first snowfall.</p></div>
         <a class="btn btn-sun" href="#book" id="bizBtn">Get a site quote</a>
@@ -412,7 +420,8 @@ footer strong{color:#fff}
                   <option>Right away, for the full season</option>
                 </select>
               </label>
-              <label class="full">Anything we should know?<textarea id="f-notes" placeholder="Steep driveway, side door path, neighbours signing up too"></textarea></label>
+              <label class="full" id="nbrField">Booking with a neighbour? You each save $50<input type="text" id="f-neighbour" placeholder="Their name and address (same street)"></label>
+              <label class="full">Anything we should know?<textarea id="f-notes" placeholder="Steep driveway, side door path, gate code"></textarea></label>
               <p class="err" id="err" hidden></p>
               <button class="btn btn-sun" type="submit" id="submitBtn">Write my booking text</button>
             </form>
@@ -465,6 +474,7 @@ footer strong{color:#fff}
         <details><summary>Which parts of Burlington do you serve?</summary><p>All of Burlington, from Aldershot to Burloak Drive and from Lake Ontario to Dundas Street, plus Alton Village. That includes Tyandaga, Brant Hills, Headon Forest, Millcroft, Tansley, Orchard, Palmer, Downtown, Roseland and Shoreacres.</p></details>
         <details><summary>When do you come?</summary><p>Every time 5 cm or more falls, November to April. You're cleared automatically. You don't need to call.</p></details>
         <details><summary>What counts as the walkway?</summary><p>The path from your driveway to your front door, plus the front steps.</p></details>
+        <details><summary>Do you offer any discounts?</summary><p>Yes. Book with a neighbour on the same street and you each save $50 on your season plan. Just add their name and address when you book.</p></details>
         <details><summary>Do you clear the snowbank the city plow leaves?</summary><p>Yes. The end of your driveway is cleared on every visit.</p></details>
         <details><summary>How do I pay?</summary><p>Half when you sign up and half on January 15.</p></details>
         <details><summary>Are you insured?</summary><p>Yes. Burlington Snow Co. carries liability insurance for every property we clear.</p></details>
@@ -604,6 +614,8 @@ footer strong{color:#fff}
   }
   document.addEventListener("click", function(){ setTimeout(setStart, 0); });
   setStart();
+  document.getElementById("nbrBtn").addEventListener("click", function(){ state.biz = false; render(); setTimeout(function(){ document.getElementById("f-neighbour").focus({preventScroll:true}); }, 400); });
+  document.addEventListener("click", function(){ setTimeout(function(){ document.getElementById("nbrField").hidden = state.biz; }, 0); });
   document.getElementById("bizBtn").addEventListener("click", function(){ state.biz = true; render(); });
 
   // booking
@@ -619,17 +631,19 @@ footer strong{color:#fff}
     if(missing.length){ err.textContent = "Please add " + missing.join(", ") + " so we can confirm your booking."; err.hidden = false; return; }
     err.hidden = true;
     var q = current();
+    var nbr = state.biz ? "" : v("f-neighbour");
     var text = "Hi Burlington Snow Co., I'd like to book snow removal.\n" +
       "Name: " + v("f-name") + "\n" +
       "Phone: " + v("f-phone") + "\n" +
       "Address: " + v("f-address") + ", Burlington\n" +
       "Package: " + q.detail + (q.amt ? " (" + q.amt + " " + q.unit + ")" : "") + "\n" +
       "Start: " + v("f-start") +
+      (nbr ? "\nNeighbour deal ($50 off each): " + nbr : "") +
       (v("f-notes") ? "\nNotes: " + v("f-notes") : "");
     msgEl.textContent = text;
     document.getElementById("sendSms").href = "sms:" + NUM + "?&body=" + encodeURIComponent(text);
     if(BOOKING_URL){
-      var data = new URLSearchParams({name:v("f-name"), phone:v("f-phone"), address:v("f-address"), package:q.detail, price:q.amt ? q.amt + " " + q.unit : "Site quote", start:v("f-start"), notes:v("f-notes")});
+      var data = new URLSearchParams({name:v("f-name"), phone:v("f-phone"), address:v("f-address"), package:q.detail, price:q.amt ? q.amt + " " + q.unit : "Site quote", start:v("f-start"), notes:(nbr ? "Neighbour deal ($50 off each): " + nbr + (v("f-notes") ? " | " : "") : "") + v("f-notes")});
       fetch(BOOKING_URL, {method:"POST", mode:"no-cors", body:data}).catch(function(){});
       document.getElementById("doneTitle").textContent = "Booking received. Thank you!";
       document.getElementById("doneText").textContent = "We'll text you at " + v("f-phone") + " to confirm, usually the same day. Want an even faster reply? Send us this text too.";
