@@ -427,8 +427,7 @@ footer strong{color:#fff}
               <label class="full">Address in Burlington<input type="text" id="f-address" autocomplete="street-address" placeholder="123 Example Cres"></label>
               <label class="full">When should your season plan start?
                 <select id="f-start">
-                  <option>Start of season (November 1)</option>
-                  <option>Right away, for the full season</option>
+                  <option>Season plan, November to April</option>
                 </select>
               </label>
               <label class="full" id="nbrField">Booking with a neighbour? You each save $50<input type="text" id="f-neighbour" placeholder="Their name and address (same street)"></label>
@@ -615,13 +614,14 @@ footer strong{color:#fff}
   document.querySelectorAll("[data-pick]").forEach(function(a){ a.addEventListener("click", function(){ state.pkg = +a.dataset.pick; state.biz = false; render(); }); });
   // Commercial can book one-time clearing; homes are season plans only.
   var startSel = document.getElementById("f-start"), startLbl = startSel.parentNode.firstChild;
-  var START = {home:["Start of season (November 1)","Right away, for the full season"], biz:["Season contract","One-time clearing"]};
+  var START = {home:["Season plan, November to April"], biz:["Season contract","One-time clearing"]};
   function setStart(){
     var k = state.biz ? "biz" : "home";
     if(startSel.dataset.k === k) return;
     startSel.dataset.k = k; startSel.innerHTML = "";
     START[k].forEach(function(t){ var o = document.createElement("option"); o.textContent = t; startSel.appendChild(o); });
-    startLbl.textContent = state.biz ? "What do you need?" : "When should your season plan start?";
+    startLbl.textContent = "What do you need?";
+    startSel.parentNode.hidden = !state.biz; // homes are always a season plan, so no question
   }
   document.addEventListener("click", function(){ setTimeout(setStart, 0); });
   setStart();
