@@ -658,6 +658,13 @@ footer strong{color:#fff}
   document.addEventListener("click", function(){ setTimeout(function(){ document.getElementById("nbrField").hidden = state.biz; }, 0); });
   document.getElementById("bizBtn").addEventListener("click", function(){ state.biz = true; render(); });
 
+  // Google Analytics events (no-op until the GA4 tag is added at build time)
+  function track(name, params){ if(window.gtag) window.gtag("event", name, params || {}); }
+  document.addEventListener("click", function(e){
+    var a = e.target.closest && e.target.closest('a[href^="sms:"],a[href^="tel:"]');
+    if(a) track("contact_click", {method: a.href.indexOf("tel:") === 0 ? "call" : "text", link_text: a.textContent.trim().slice(0,40)});
+  });
+
   // booking
   var form = document.getElementById("bookForm"), done = document.getElementById("done"),
       formWrap = document.getElementById("formWrap"), msgEl = document.getElementById("msg"), err = document.getElementById("err");
@@ -681,6 +688,7 @@ footer strong{color:#fff}
       (nbr ? "\nNeighbour deal ($50 off each): " + nbr : "") +
       (v("f-notes") ? "\nNotes: " + v("f-notes") : "");
     msgEl.textContent = text;
+    track("generate_lead", {package: q.detail, value: q.amt ? +String(q.amt).replace(/[^0-9.]/g,"") : 0, currency: "CAD", neighbour_deal: nbr ? "yes" : "no"});
     document.getElementById("sendSms").href = "sms:" + NUM + "?&body=" + encodeURIComponent(text);
     if(BOOKING_URL){
       var data = new URLSearchParams({name:v("f-name"), phone:v("f-phone"), address:v("f-address"), package:q.detail, price:q.amt ? q.amt + " " + q.unit : "Site quote", start:v("f-start"), notes:(nbr ? "Neighbour deal ($50 off each): " + nbr + (v("f-notes") ? " | " : "") : "") + v("f-notes")});

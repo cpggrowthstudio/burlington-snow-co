@@ -6,6 +6,14 @@ D = "https://burlingtonsnowco.ca/"
 body = open(src).read()
 if len(sys.argv) > 3 and sys.argv[3]:
     body = body.replace('var BOOKING_URL = "";', 'var BOOKING_URL = ' + json.dumps(sys.argv[3]) + ';', 1)
+# optional argv[4]: Google Analytics 4 measurement ID (G-XXXX). Empty = no tracking.
+GA_ID = sys.argv[4] if len(sys.argv) > 4 else ""
+ga_tag = ""
+if GA_ID:
+    ga_tag = f'''<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{GA_ID}');</script>
+'''
+    body = body.replace('<span>Call or text 365 351 6212</span>\n  </div>\n</footer>', '<span>Call or text 365 351 6212</span>\n    <span class="privacy">We use Google Analytics to see how people find this site. We never sell your details.</span>\n  </div>\n</footer>', 1)
 body = re.sub(r'<title>.*?</title>\n', '', body, count=1)
 body = body.replace('<meta name="claude:viewport-fit-sides" content="cover">\n', '')
 body = re.sub(r'<meta name="description"[^>]*>\n', '', body, count=1)
@@ -31,7 +39,7 @@ head = f'''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Snow Removal Burlington ON | From $499 a Season | Burlington Snow Co.</title>
+{ga_tag}<title>Snow Removal Burlington ON | From $499 a Season | Burlington Snow Co.</title>
 <meta name="description" content="{desc}">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="{D}">
