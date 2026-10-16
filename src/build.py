@@ -76,7 +76,7 @@ open(f'{out}/llms.txt','w').write(f"""# Burlington Snow Co.
 - Service area: Burlington, Ontario only
 
 ## Season prices (CAD, plus HST, walkway and front steps included)
-""" + "".join(f"- {n}: ${p}\n" for n,p in PRICES) + """- Payment: half at sign-up, half January 15
+""" + "".join(f"- {n}: ${p}\n" for n,p in PRICES) + """- Payment: nothing due when booking online; after confirmation by text, pay by Interac e-Transfer, half up front and half on January 1
 - Commercial sites (condos, plazas, offices): quoted per site
 
 ## Neighbourhoods served
