@@ -271,9 +271,9 @@ footer strong{color:#fff}
         </ul>
         <div class="btns">
           <a class="btn btn-sun" href="#packages">See packages</a>
-          <a class="btn btn-line" href="sms:+16475045210?&amp;body=Hi%2C%20I%27d%20like%20snow%20removal.%20My%20address%20is%20">Text us</a>
+          <a class="btn btn-line" href="sms:+13653516212?&amp;body=Hi%2C%20I%27d%20like%20snow%20removal.%20My%20address%20is%20">Text us</a>
         </div>
-        <p class="phone">Book now, pay nothing today. Call or text <b>647 504 5210</b></p>
+        <p class="phone">Book now, pay nothing today. Call or text <b>365 351 6212</b></p>
       </div>
       <figure class="mapcard" id="map">
         <figcaption><b>Our Burlington service area</b><span>Lake Ontario to Dundas St, Aldershot to Burloak Dr</span></figcaption>
@@ -428,7 +428,7 @@ footer strong{color:#fff}
           </div>
           <div class="done" id="done" hidden>
             <h3 id="doneTitle">Nearly done. Send this text.</h3>
-            <p id="doneText">Tap the button to open Messages with this filled in. If it doesn't open, copy it and text it to <strong>647 504 5210</strong>.</p>
+            <p id="doneText">Tap the button to open Messages with this filled in. If it doesn't open, copy it and text it to <strong>365 351 6212</strong>.</p>
             <pre class="msg" id="msg"></pre>
             <div class="row">
               <a class="btn btn-blue" id="sendSms" href="#">Open in Messages</a>
@@ -441,9 +441,9 @@ footer strong{color:#fff}
           <div class="panel">
             <h3>Rather just text?</h3>
             <p>Send your address and we'll reply with your price.</p>
-            <span class="num" id="numText">647 504 5210</span>
+            <span class="num" id="numText">365 351 6212</span>
             <div class="row">
-              <a class="btn btn-blue btn-sm" href="sms:+16475045210?&amp;body=Hi%2C%20I%27d%20like%20a%20snow%20removal%20price.%20My%20address%20is%20">Text us</a>
+              <a class="btn btn-blue btn-sm" href="sms:+13653516212?&amp;body=Hi%2C%20I%27d%20like%20a%20snow%20removal%20price.%20My%20address%20is%20">Text us</a>
               <button class="btn btn-line btn-sm" type="button" id="copyNum" style="color:var(--blue)">Copy number</button>
             </div>
           </div>
@@ -486,21 +486,21 @@ footer strong{color:#fff}
 <footer>
   <div class="wrap">
     <span><strong>Burlington Snow Co.</strong> Snow removal in Burlington, Ontario</span>
-    <span>Call or text 647 504 5210</span>
+    <span>Call or text 365 351 6212</span>
   </div>
 </footer>
 
 <div class="dock" role="region" aria-label="Your package">
   <div class="in">
     <div class="sum"><small id="dockName">Townhouse · with walkway</small><b id="dockPrice">$499</b> <small style="display:inline" id="dockUnit">per season</small></div>
-    <a class="btn btn-line btn-sm txt" href="sms:+16475045210?&amp;body=Hi%2C%20I%27d%20like%20snow%20removal.%20My%20address%20is%20">Text us</a>
+    <a class="btn btn-line btn-sm txt" href="sms:+13653516212?&amp;body=Hi%2C%20I%27d%20like%20snow%20removal.%20My%20address%20is%20">Text us</a>
     <a class="btn btn-sun btn-sm" href="#book">Book this</a>
   </div>
 </div>
 
 <script>
 (function(){
-  var NUM = "+16475045210";
+  var NUM = "+13653516212";
   // Google Sheet booking endpoint (Apps Script web app). Empty = text-only booking.
   var BOOKING_URL = "";
   if(BOOKING_URL) document.getElementById("submitBtn").textContent = "Book my package";
@@ -659,7 +659,7 @@ footer strong{color:#fff}
     try { navigator.clipboard.writeText(text).then(ok, sel); } catch(e){ sel(); }
   }
   document.getElementById("copyMsg").addEventListener("click", function(){ copy(msgEl.textContent, this, msgEl); });
-  document.getElementById("copyNum").addEventListener("click", function(){ copy("647 504 5210", this, document.getElementById("numText")); });
+  document.getElementById("copyNum").addEventListener("click", function(){ copy("365 351 6212", this, document.getElementById("numText")); });
 
   render();
   // map copy for phones, in the areas section

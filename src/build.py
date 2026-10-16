@@ -12,7 +12,7 @@ body = re.sub(r'<meta name="description"[^>]*>\n', '', body, count=1)
 HOODS = ["Aldershot","Alton Village","Brant Hills","Downtown Burlington","Headon Forest","Millcroft","Orchard","Palmer","Roseland","Shoreacres","Tansley","Tyandaga"]
 PRICES = [("Townhouse",499),("Single car",649),("Double car",799),("Large (5+ cars)",999)]
 biz = {"@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":D+"#business","name":"Burlington Snow Co.","url":D,
- "logo":D+"logo.png","image":D+"og-image.png","telephone":"+1-647-504-5210","priceRange":"$499-$999 per season","currenciesAccepted":"CAD",
+ "logo":D+"logo.png","image":D+"og-image.png","telephone":"+1-365-351-6212","priceRange":"$499-$999 per season","currenciesAccepted":"CAD",
  "description":"Seasonal residential snow removal in Burlington, Ontario. Driveway, walkway and front steps cleared every time 5 cm falls, November to April. Cleared within 6 hours of the snow stopping or the visit is free.",
  "address":{"@type":"PostalAddress","addressLocality":"Burlington","addressRegion":"ON","addressCountry":"CA"},
  "geo":{"@type":"GeoCoordinates","latitude":43.3255,"longitude":-79.799},
@@ -25,7 +25,7 @@ site = {"@type":"WebSite","@id":D+"#website","url":D,"name":"Burlington Snow Co.
 faq = [{"@type":"Question","name":re.sub('<[^>]+>','',q),"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}}
        for q,a in re.findall(r'<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>', body)]
 graph = {"@context":"https://schema.org","@graph":[biz, site, {"@type":"FAQPage","@id":D+"#faq","mainEntity":faq}]}
-desc = "Snow removal in Burlington, ON. Driveway and walkway cleared every time 5 cm falls, within 6 hours or it's free. Townhouse $499 a season. Text 647 504 5210."
+desc = "Snow removal in Burlington, ON. Driveway and walkway cleared every time 5 cm falls, within 6 hours or it's free. Townhouse $499 a season. Text 365 351 6212."
 head = f'''<!doctype html>
 <html lang="en-CA">
 <head>
@@ -39,7 +39,7 @@ head = f'''<!doctype html>
 <meta property="og:locale" content="en_CA">
 <meta property="og:site_name" content="Burlington Snow Co.">
 <meta property="og:title" content="Burlington Snow Co. | Snow removal from $499 a season">
-<meta property="og:description" content="Driveway and walkway cleared every time 5 cm falls. Cleared in 6 hours or it's free. Text 647 504 5210.">
+<meta property="og:description" content="Driveway and walkway cleared every time 5 cm falls. Cleared in 6 hours or it's free. Text 365 351 6212.">
 <meta property="og:url" content="{D}">
 <meta property="og:image" content="{D}og-image.png">
 <meta property="og:image:width" content="1200">
@@ -71,7 +71,7 @@ open(f'{out}/llms.txt','w').write(f"""# Burlington Snow Co.
 > Burlington Snow Co. is a local, insured snow removal company in Burlington, Ontario, Canada. Season plans (November to April) clear the driveway, walkway and front steps every time 5 cm or more of snow falls, including the snowbank the city plow leaves. Driveways are cleared within 6 hours of the snow stopping (12 hours for storms over 20 cm) or that visit is free.
 
 ## Contact
-- Call or text: 647 504 5210
+- Call or text: 365 351 6212
 - Website: {D}
 - Service area: Burlington, Ontario only
 
