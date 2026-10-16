@@ -161,6 +161,13 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;te
 .rvsum{display:flex;align-items:center;gap:8px;margin:12px 0 0;font-weight:700;color:var(--muted);font-size:17px}
 .rvsum b{font:700 24px var(--display);color:var(--blue-deep)}
 .rvsum .stars{font-size:24px}
+.crew{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;align-items:stretch;background:var(--blue-deep);color:#fff;border-radius:26px;overflow:hidden}
+.crew picture,.crew img{display:block;width:100%;height:100%;object-fit:cover;min-height:240px}
+.crew div{padding:30px 32px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.crew .kicker{align-self:flex-start}
+.crew h3{font:700 32px/1.1 var(--display);margin:0}
+.crew p{margin:0;font-size:18px;line-height:1.5;color:#D6E4F5}
+@media (max-width:760px){.crew{grid-template-columns:1fr}.crew img{min-height:0;aspect-ratio:4/3}}
 .rv.feat{background:var(--blue);border-color:var(--blue);color:#fff}
 .rv.feat blockquote{color:#fff;font:600 21px/1.45 var(--body)}
 .rv figcaption{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--blue-deep);flex-wrap:wrap}
@@ -374,6 +381,10 @@ footer strong{color:#fff}
         <figure class="rv "><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>We&#x27;ve used Burlington Snow for two winters now, and their driveway snow clearing service is fantastic. They always arrive promptly, even after those heavy overnight storms, and do a wonderfully thorough job clearing. Highly recommend to anyone in the area!</blockquote><figcaption><span class="av" aria-hidden="true">S</span>Sarah L.<small>Burlington customer</small></figcaption></figure>
         <figure class="rv "><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>Best snow service in the city. They always arrive promptly and do a thorough job on my driveway. Highly recommend!</blockquote><figcaption><span class="av" aria-hidden="true">M</span>Mike T.<small>Burlington customer</small></figcaption></figure>
         <figure class="rv "><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>Great snow clearing service for the driveway. They are quick, prompt, and thorough. Definitely worth the investment for the peace of mind all winter long.</blockquote><figcaption><span class="av" aria-hidden="true">J</span>Jason R.<small>Burlington customer</small></figcaption></figure>
+      </div>
+      <div class="crew">
+        <picture><source srcset="img/crew-truck.webp" type="image/webp"><img src="img/crew-truck.jpg" width="516" height="387" loading="lazy" alt="Burlington Snow Co. pickup truck in the snow"></picture>
+        <div><span class="kicker">Meet the crew</span><h3>Local, insured, and on your street when it snows.</h3><p>We live and work in Burlington, so your driveway is on a short route, not across the region.</p></div>
       </div>
     </div>
   </section>
