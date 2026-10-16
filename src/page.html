@@ -270,7 +270,7 @@ footer strong{color:#fff}
       <div>
         <span class="kicker">Burlington's local snow crew</span>
         <h1 id="h1" style="margin-top:12px">Snow removal in Burlington. <em>Already shovelled.</em></h1>
-        <p class="lead">Your driveway and walkway cleared every time 5 cm falls, November 1 to April 15. No calls, no shovels, no late for work.</p>
+        <p class="lead">Your driveway and walkway cleared every time 5 cm falls, November 15 to April 15. No calls, no shovels, no late for work.</p>
         <ul class="facts">
           <li>Plowed at 5 cm</li>
           <li>Cleared in 6 hours or it's free</li>
@@ -426,10 +426,10 @@ footer strong{color:#fff}
               <label>Your name<input type="text" id="f-name" autocomplete="name" placeholder="Sarah M."></label>
               <label>Mobile number<input type="tel" id="f-phone" autocomplete="tel" placeholder="905 555 0123"></label>
               <label class="full">Address in Burlington<input type="text" id="f-address" autocomplete="street-address" placeholder="123 Example Cres"></label>
-              <p class="full seasonnote" id="seasonNote">Your season runs <b>November 1 to April 15</b>.</p>
+              <p class="full seasonnote" id="seasonNote">Your season runs <b>November 15 to April 15</b>.</p>
               <label class="full">When should your season plan start?
                 <select id="f-start">
-                  <option>Season plan, November 1 to April 15</option>
+                  <option>Season plan, November 15 to April 15</option>
                 </select>
               </label>
               <label class="full" id="nbrField">Booking with a neighbour? You each save $50<input type="text" id="f-neighbour" placeholder="Their name and address (same street)"></label>
@@ -482,9 +482,9 @@ footer strong{color:#fff}
       <span class="kicker">Questions</span>
       <h2 id="faq-h" class="sec-title">Good to know</h2>
       <div class="faq">
-        <details open><summary>How much does snow removal cost in Burlington?</summary><p>Our season plans run November 1 to April 15 and include the driveway, walkway and front steps. A townhouse is $499, a single car driveway is $649, a double car driveway is $799 and a large driveway (5 or more cars) is $999, plus HST. Commercial sites are quoted per site.</p></details>
+        <details open><summary>How much does snow removal cost in Burlington?</summary><p>Our season plans run November 15 to April 15 and include the driveway, walkway and front steps. A townhouse is $499, a single car driveway is $649, a double car driveway is $799 and a large driveway (5 or more cars) is $999, plus HST. Commercial sites are quoted per site.</p></details>
         <details><summary>Which parts of Burlington do you serve?</summary><p>All of Burlington, from Aldershot to Burloak Drive and from Lake Ontario to Dundas Street, plus Alton Village. That includes Tyandaga, Brant Hills, Headon Forest, Millcroft, Tansley, Orchard, Palmer, Downtown, Roseland and Shoreacres.</p></details>
-        <details><summary>When do you come?</summary><p>Every time 5 cm or more falls, November 1 to April 15. You're cleared automatically. You don't need to call.</p></details>
+        <details><summary>When do you come?</summary><p>Every time 5 cm or more falls, November 15 to April 15. You're cleared automatically. You don't need to call.</p></details>
         <details><summary>What counts as the walkway?</summary><p>The path from your driveway to your front door, plus the front steps.</p></details>
         <details><summary>Do you offer any discounts?</summary><p>Yes. Book with a neighbour on the same street and you each save $50 on your season plan. Just add their name and address when you book.</p></details>
         <details><summary>Do you clear the snowbank the city plow leaves?</summary><p>Yes. The end of your driveway is cleared on every visit.</p></details>
@@ -616,7 +616,7 @@ footer strong{color:#fff}
   document.querySelectorAll("[data-pick]").forEach(function(a){ a.addEventListener("click", function(){ state.pkg = +a.dataset.pick; state.biz = false; render(); }); });
   // Commercial can book one-time clearing; homes are season plans only.
   var startSel = document.getElementById("f-start"), startLbl = startSel.parentNode.firstChild;
-  var START = {home:["Season plan, November 1 to April 15"], biz:["Season contract","One-time clearing"]};
+  var START = {home:["Season plan, November 15 to April 15"], biz:["Season contract","One-time clearing"]};
   function setStart(){
     var k = state.biz ? "biz" : "home";
     if(startSel.dataset.k === k) return;

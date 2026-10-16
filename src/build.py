@@ -21,14 +21,14 @@ HOODS = ["Aldershot","Alton Village","Brant Hills","Downtown Burlington","Headon
 PRICES = [("Townhouse",499),("Single car",649),("Double car",799),("Large (5+ cars)",999)]
 biz = {"@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":D+"#business","name":"Burlington Snow Co.","url":D,
  "logo":D+"logo.png","image":D+"og-image.png","telephone":"+1-365-351-6212","priceRange":"$499-$999 per season","currenciesAccepted":"CAD",
- "description":"Seasonal residential snow removal in Burlington, Ontario. Driveway, walkway and front steps cleared every time 5 cm falls, November 1 to April 15. Cleared within 6 hours of the snow stopping or the visit is free.",
+ "description":"Seasonal residential snow removal in Burlington, Ontario. Driveway, walkway and front steps cleared every time 5 cm falls, November 15 to April 15. Cleared within 6 hours of the snow stopping or the visit is free.",
  "address":{"@type":"PostalAddress","addressLocality":"Burlington","addressRegion":"ON","addressCountry":"CA"},
  "geo":{"@type":"GeoCoordinates","latitude":43.3255,"longitude":-79.799},
  "areaServed":[{"@type":"City","name":"Burlington","containedInPlace":{"@type":"AdministrativeArea","name":"Halton Region, Ontario"}}]+[{"@type":"Place","name":n+", Burlington, ON"} for n in HOODS],
  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"00:00","closes":"23:59"}],
  "knowsAbout":["Snow removal","Driveway snow clearing","Walkway shovelling","Snow plowing","Windrow clearing"],
  "hasOfferCatalog":{"@type":"OfferCatalog","name":"Seasonal snow removal packages, driveway and walkway included","itemListElement":[
-   {"@type":"Offer","itemOffered":{"@type":"Service","serviceType":"Residential snow removal","name":f"{n} driveway and walkway, seasonal snow removal","areaServed":"Burlington, ON"},"price":str(p),"priceCurrency":"CAD","eligibleDuration":{"@type":"QuantitativeValue","name":"November 1 to April 15 season"}} for n,p in PRICES]}}
+   {"@type":"Offer","itemOffered":{"@type":"Service","serviceType":"Residential snow removal","name":f"{n} driveway and walkway, seasonal snow removal","areaServed":"Burlington, ON"},"price":str(p),"priceCurrency":"CAD","eligibleDuration":{"@type":"QuantitativeValue","name":"November 15 to April 15 season"}} for n,p in PRICES]}}
 site = {"@type":"WebSite","@id":D+"#website","url":D,"name":"Burlington Snow Co.","inLanguage":"en-CA","publisher":{"@id":D+"#business"}}
 faq = [{"@type":"Question","name":re.sub('<[^>]+>','',q),"acceptedAnswer":{"@type":"Answer","text":re.sub('<[^>]+>','',a)}}
        for q,a in re.findall(r'<details[^>]*><summary>(.*?)</summary><p>(.*?)</p></details>', body)]
@@ -76,7 +76,7 @@ open(f'{out}/.nojekyll','w').write("")
 faqtxt = "\n".join(f"- **{f['name']}** {f['acceptedAnswer']['text']}" for f in faq)
 open(f'{out}/llms.txt','w').write(f"""# Burlington Snow Co.
 
-> Burlington Snow Co. is a local, insured snow removal company in Burlington, Ontario, Canada. Season plans (November 1 to April 15) clear the driveway, walkway and front steps every time 5 cm or more of snow falls, including the snowbank the city plow leaves. Driveways are cleared within 6 hours of the snow stopping (12 hours for storms over 20 cm) or that visit is free.
+> Burlington Snow Co. is a local, insured snow removal company in Burlington, Ontario, Canada. Season plans (November 15 to April 15) clear the driveway, walkway and front steps every time 5 cm or more of snow falls, including the snowbank the city plow leaves. Driveways are cleared within 6 hours of the snow stopping (12 hours for storms over 20 cm) or that visit is free.
 
 ## Contact
 - Call or text: 365 351 6212
